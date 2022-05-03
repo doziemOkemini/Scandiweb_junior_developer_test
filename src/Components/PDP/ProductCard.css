@@ -1,0 +1,32 @@
+.box-item{
+    margin: 0.2rem;
+    padding: 10px;
+    border: 1px solid black;
+    height: 100%;
+    width: 50px;
+    background-color: #ffffff;
+}
+
+.box-item:hover{
+    background-color: #1D1F22;
+    color: #ffffff;
+}
+
+.box-item:focus{
+    background-color: #1D1F22;
+    color: #ffffff;
+}
+
+.attribute-content{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.attribute-header{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.attribute-container{
+    margin: 3px 0;
+}

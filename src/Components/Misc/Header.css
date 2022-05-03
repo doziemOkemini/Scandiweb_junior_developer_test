@@ -1,0 +1,107 @@
+.header{
+    height: 80px;
+    width: 100%;
+    background-color: #ffffff;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-links{
+    margin-left: 1.5em;
+    width: 30%;
+}
+
+.links{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.links li{
+    text-decoration: none;
+    list-style: none;
+    margin: 0.5em;
+}
+
+.links li button{
+    background-color: #ffffff;
+    color: #000000;
+    max-width: 8em;
+    cursor: pointer;
+    padding: 12px;
+    border: none;
+}
+
+.switcher-and-cart{
+    width: 30%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.switcher, .cart-mondal{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.switcher{
+    margin: 2px;
+    width: fit-content;
+}
+
+.cart-mondal{
+    margin: 2px;
+}
+
+.home-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-count{
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: #000000;
+    color: #ffffff;
+    position:absolute;
+    bottom: 18px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: x-small; 
+}
+
+.cart-icon{
+    position: relative;
+    background-color: #ffffff;
+    border: none;
+}
+
+.cart-mondal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.filter-link:hover{
+    border-bottom: 1px solid #5ECE7B;
+    color:  #5ECE7B;
+}
+
+.filter-link:focus{
+    border-bottom: 1px solid #5ECE7B;
+    color:  #5ECE7B;
+}
