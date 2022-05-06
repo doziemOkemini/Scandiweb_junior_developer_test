@@ -12,8 +12,8 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ProductDP from './Components/PDP/ProductDP';
 import Header from './Components/Misc/Header';
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+const client = new ApolloClient({ //Initializing GraphQl Client
+  uri: "http://localhost:4000/", 
   cache: new InMemoryCache()
 });
 
@@ -21,11 +21,14 @@ const client = new ApolloClient({
 class App extends Component {
  render() {
     return (
-      <ApolloProvider client={client}>
+      //Wrapping App with GraphQl Client
+      <ApolloProvider client={client}> 
         <div className='App'>    
-          <Router>
+        {/* Wrapping App with Router for Links */}
+          <Router> 
           <Header />
             <Routes>
+              {/* Declaring Routes and paths in Router */}
               <Route exact path='/' element={<Category/>} />
               <Route path='/cart' element={<Cart/>} />
               <Route path='/product/:id' element={<ProductDP/>} />

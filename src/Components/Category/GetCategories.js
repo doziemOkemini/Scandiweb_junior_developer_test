@@ -1,5 +1,6 @@
 import { useQuery, gql} from '@apollo/client';
 
+//Higher Order Function using useQuery to fetch the graphQl data
 const WithQuery = WrappedComponent => {
     const WithQuery = () => {
         const {data, error, loading} = useQuery(

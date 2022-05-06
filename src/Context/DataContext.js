@@ -2,6 +2,7 @@ import React from "react";
 const DataContext = React.createContext();
 
 export class DataProvider extends React.Component{
+  //Declaring State in data Context Api
     state = {
         title: "ALL",
         currency: "USD",
@@ -12,32 +13,38 @@ export class DataProvider extends React.Component{
         totalInCart: 0
     }
 
-    
+  
+  //Declaring and Initializing state Functions 
   handleClick = (data) => {
+    //handling section filter variable in state
     this.setState({
       title: data
     })
   }
 
   handleChangeDefault = () =>{
+    //Setting Default filter value
     this.setState({
       title: 'ALL'
     })
   }
 
   handleChange = (value) =>{
+    //handling currency filter variable in state
       this.setState({
           currency: value
       })
   }
 
   showMondal = () =>{
+    //Setting mondal Varable in state
     this.setState({
       mondalIsClicked: !this.state.mondalIsClicked
     })
   }
  
   setItems = (data) => {
+    //Initializing cart products and adding product to cart in state
     const currentCurrency = data.prices.filter(price => price.currency.label === this.state.currency);
     const exist = this.state.cart.find( item => item.id === data.id);
     if (exist){
@@ -52,12 +59,14 @@ export class DataProvider extends React.Component{
   }
 
   onAdd = (price) =>{
+    //Setting total price of cart Items addition
    this.setState({
      totalInCart: this.state.totalInCart + price
    })
   }
 
-  onRemove = (price) => {  
+  onRemove = (price) => { 
+    //Setting total price of cart Items Subtraction 
     this.setState({
       totalInCart: this.state.totalInCart - price
     })
@@ -67,9 +76,11 @@ export class DataProvider extends React.Component{
  
 
   render(){
+    //Setting functions and variables used globally
       const {title, currency, cart, mondalIsClicked,  totalInCart, cartQty} = this.state;
       const {handleClick, handleChange, setItems, showMondal, onAdd, onRemove, handleChangeDefault} = this;
       return(
+        // DataContext Provider passes methods and variables as props
                <DataContext.Provider value={{
                     title, currency, cart, mondalIsClicked,  totalInCart, cartQty, onAdd,
                     handleClick, handleChange, setItems, showMondal, onRemove, handleChangeDefault

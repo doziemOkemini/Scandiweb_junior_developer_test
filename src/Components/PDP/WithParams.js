@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, gql} from '@apollo/client';
 
-export const WithParams = (Component) => {
+export const WithParams = (Component) => { //Higher Order Function using useQuery to fetch the graphQl data to use with product Params
     const WithParams = () => {
         const {id} = useParams();
         const {data, error} = useQuery(

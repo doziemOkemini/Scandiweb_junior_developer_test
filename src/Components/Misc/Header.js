@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CartMondal from '../Cart/CartMondal';
 
 class Header extends React.Component {
+    //Declaring props and functions
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -13,38 +14,45 @@ class Header extends React.Component {
         this.handleHome= this.handleHome.bind(this)
     }
 
+    //obtaining value and passing data to dataContext
     handleChange(e){
         const newTitle = e.target.value;
         this.context.handleClick(newTitle);
     }
 
+    //obtaining value and passing data to dataContext
     handleChangeCurrency({target}){
         this.context.handleChange(target.value);
     }
 
+    //passing action to dataContext
     mondalToggle(){
         this.context.showMondal()
     }
 
+    //setting default values
     handleHome(){
         this.context.handleChangeDefault()
     }
 
 
     render() { 
+        //destructing values
         const {cart, mondalIsClicked} = this.context;
 
         return (
             <div className='header'>
                 <div className='filter-links'>
                     <ul className='links'>
+                        {/* adding Eventhandlers the for filter links */}
                         <li><button className='filter-link' onClick={this.handleChange} value='ALL'> All </button></li>
                         <li><button className='filter-link' onClick={this.handleChange} value='TECH'> TECH </button></li>
                         <li><button className='filter-link' onClick={this.handleChange} value='CLOTHES'> CLOTHES </button></li>
                     </ul>
                 </div>
 
-                <Link to={'/'}>
+                {/* Home icon */}
+                <Link to={'/'}> 
                     <div className='home-icon' onClick={this.handleHome}>
                         <svg width={28} height={28} fill="none" stroke="#3aa175" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -55,7 +63,7 @@ class Header extends React.Component {
                 
                 <div className='switcher-and-cart'>
                     <div className='switcher'>
-                        <select  name="currency-switcher" id='currency-switcher' onChange={this.handleChangeCurrency} >
+                        <select  name="currency-switcher" id='currency-switcher' onChange={this.handleChangeCurrency} >   {/* Selecting currency value */}
                             <option value={this.context.currency}>{this.context.currency}</option> 
                             <option value="USD">$ USD</option>
                             <option value="GBP">£ GBP</option>
@@ -65,19 +73,19 @@ class Header extends React.Component {
 
                     <div className='cart-mondal'>
                         <div>
-                            <button onClick={this.mondalToggle} className='cart-icon'>
+                            <button onClick={this.mondalToggle} className='cart-icon'>  {/* Event handler for cart modal */}
                                 <svg width={25} height={25} fill="none" stroke="#3aa175" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z" />
                                     <path d="M20 20a1 1 0 1 0 0 2 1 1 0 1 0 0-2z" />
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                                 </svg>
                                 <div className='cart-items-counter'>
-                                    { cart.length > 0 && <span className='cart-count'>{cart.length}</span> }
+                                    { cart.length > 0 && <span className='cart-count'>{cart.length}</span> }  {/* if cart items is empty? */}
                                 </div>
                             </button>
                         </div>
                         <div className='mondal-position'>
-                            <CartMondal show={mondalIsClicked} />
+                            <CartMondal show={mondalIsClicked} />  {/* modal is clicked and component is shown */}
                         </div>
                     </div>
                     

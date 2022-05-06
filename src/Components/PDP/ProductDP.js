@@ -8,14 +8,18 @@ import ProductCard from './ProductCard';
 
 class ProductDP extends React.Component {
 
+  //function to passing item data to cart
   handleClick = (data) => {
     this.context.setItems(data);
   }
     
   render() {
+    //destructing and declaring data
     const { id, data } = this.props;
     let product = '';
     let price = '';
+
+    //checking data and filtering data for single item with Params
     if(data) {
       product = data.category.products.filter(item => item.id === id)
       price = product[0].prices.filter(value => value.currency.label === this.context.currency)
@@ -29,8 +33,9 @@ class ProductDP extends React.Component {
                  { 
                     product &&  
                      <div className='gallery'>
+                       {/* mapping image section */}
                        {
-                         product[0].gallery.length <= 1 ? 
+                         product[0].gallery.length <= 1 ? //Defining gallery length
 
                          <div className='main-gallery'>
                             <img src={product[0].gallery[0]} alt={product[0].id} className='image-item' id='main-image-alone' /> 
@@ -62,11 +67,14 @@ class ProductDP extends React.Component {
                         <h2>{product[0].name}</h2> 
             
                         { 
+                        // passing attributes to productCard Compenent
                           product[0].attributes && <ProductCard  attributes={product[0].attributes} /> 
                         }
 
                         <h3>PRICE:</h3>
+                        {/* listing price details */}
                         <p className='price'>{price[0].currency.symbol}{price[0].amount}</p>
+                        {/* button is item inStock?*/}
                         {product[0].inStock ? <button onClick={() => this.handleClick(product[0])} className='cart-button'> ADD TO CART</button> : <button className='cart-button'> OUT OF STOCK </button>}
                         <div className='description' >
                           <Interweave content={product[0].description} />

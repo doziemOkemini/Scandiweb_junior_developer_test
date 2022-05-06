@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import DataContext, {DataProvider} from './Context/DataContext';
 
 ReactDOM.render(
-  <DataProvider>
+  //Wrapping the App with Context Api
+  <DataProvider> 
     <App />
   </DataProvider>,
   document.getElementById('root')
