@@ -42,6 +42,13 @@ export class DataProvider extends React.Component{
       mondalIsClicked: !this.state.mondalIsClicked
     })
   }
+
+  showMondalTrue = () =>{
+    //Setting mondal Varable in state
+    this.setState({
+      mondalIsClicked: true
+    })
+  }
  
   setItems = (data) => {
     //Initializing cart products and adding product to cart in state
@@ -78,12 +85,13 @@ export class DataProvider extends React.Component{
   render(){
     //Setting functions and variables used globally
       const {title, currency, cart, mondalIsClicked,  totalInCart, cartQty} = this.state;
-      const {handleClick, handleChange, setItems, showMondal, onAdd, onRemove, handleChangeDefault} = this;
+      const {handleClick, handleChange, setItems, showMondal, onAdd, onRemove, handleChangeDefault, showMondalTrue} = this;
       return(
         // DataContext Provider passes methods and variables as props
                <DataContext.Provider value={{
                     title, currency, cart, mondalIsClicked,  totalInCart, cartQty, onAdd,
-                    handleClick, handleChange, setItems, showMondal, onRemove, handleChangeDefault
+                    handleClick, handleChange, setItems, showMondal, onRemove, handleChangeDefault,
+                    showMondalTrue
                 }}> 
                     {this.props.children}
                </DataContext.Provider>

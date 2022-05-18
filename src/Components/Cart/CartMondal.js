@@ -19,15 +19,15 @@ export default class CartMondal extends Component {
       }
 
   render() {
-      const {cart, currency,totalInCart} = this.context;
+      const {cart, currency,totalInCart, showMondal, showMondalTrue} = this.context;
       const {show} = this.props;
       if(show === false){
           return null
       } else{
           return(
-            <div className='overlay'>
-                <div className='mondal'>
-                    <div className='cart-modal'>
+            <div className='overlay' onClick={() => showMondal()}>
+                <div className='mondal' onClick={() => showMondalTrue()}>
+                    <div className='cart-modal' >
                         <h4>My Bag {cart.length} item</h4>
                         {cart.length === 0 && <h4>Cart is Empty</h4> }
 
@@ -66,7 +66,7 @@ export default class CartMondal extends Component {
                         <div className='checkout'>
                             <div className='checkout-price'><p>Total:</p> <span>{totalInCart.toFixed(2)}</span> </div>
                             <div className='modal-button'>
-                               <button id='view-bag'><Link to={'/cart'} style={{textDecoration: 'none', color: '#1D1F22'}}>VIEW BAG</Link> </button>
+                               <button id='view-bag'><Link to={'/cart'} className='cart-link'>VIEW BAG</Link> </button>
                                 <button>CHECKOUT</button>
                             </div>
                         </div>

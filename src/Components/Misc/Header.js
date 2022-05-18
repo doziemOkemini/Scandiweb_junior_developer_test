@@ -3,6 +3,7 @@ import React from 'react';
 import DataContext from '../../Context/DataContext';
 import { Link } from 'react-router-dom';
 import CartMondal from '../Cart/CartMondal';
+import WithCategoryNameQuery from '../../Queries/CategoryList';
 
 class Header extends React.Component {
     //Declaring props and functions
@@ -39,15 +40,22 @@ class Header extends React.Component {
     render() { 
         //destructing values
         const {cart, mondalIsClicked} = this.context;
+        const {query, currencyQuery} = this.props
+        console.log(currencyQuery);
 
         return (
             <div className='header'>
                 <div className='filter-links'>
                     <ul className='links'>
-                        {/* adding Eventhandlers the for filter links */}
-                        <li><button className='filter-link' onClick={this.handleChange} value='ALL'> All </button></li>
-                        <li><button className='filter-link' onClick={this.handleChange} value='TECH'> TECH </button></li>
-                        <li><button className='filter-link' onClick={this.handleChange} value='CLOTHES'> CLOTHES </button></li>
+                        {/* adding Eventhandlers the for filter links */
+                            query && query.categories.map( item => {
+                                return (
+                                    <div key={item.name}>
+                                        <li><button className='filter-link' onClick={this.handleChange} value={item.name}> {item.name.toUpperCase()} </button></li>
+                                    </div>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
 
@@ -64,10 +72,13 @@ class Header extends React.Component {
                 <div className='switcher-and-cart'>
                     <div className='switcher'>
                         <select  name="currency-switcher" id='currency-switcher' onChange={this.handleChangeCurrency} >   {/* Selecting currency value */}
-                            <option value={this.context.currency}>{this.context.currency}</option> 
-                            <option value="USD">$ USD</option>
-                            <option value="GBP">£ GBP</option>
-                            <option value="JPY">¥ JPY</option>
+                            {
+                                currencyQuery && currencyQuery.currencies.map( currency => {
+                                    return(
+                                        <option key={currency.label} value={currency.label}>{currency.symbol} {currency.label}</option>
+                                    )
+                                })
+                            }
                         </select>
                     </div>
 
@@ -101,4 +112,4 @@ class Header extends React.Component {
 
 Header.contextType = DataContext;
 
-export default Header;
+export default WithCategoryNameQuery(Header);

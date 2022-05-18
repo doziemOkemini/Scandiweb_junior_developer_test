@@ -21,13 +21,14 @@
     align-items: center;
 }
 
-.item-right img{
-    width: 200px;
-    height: 100%;
-    margin: 5px;
-    object-fit: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.cart-slider{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .counter{

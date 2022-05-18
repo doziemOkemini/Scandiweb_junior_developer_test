@@ -1,7 +1,7 @@
 import React from 'react';
 import './Category.css';
 import Card from '../Card/Card';
-import WithQuery from './GetCategories';
+import WithQuery from '../../Queries/GetCategories';
 import DataContext from '../../Context/DataContext';
 
 class Category extends React.Component {
@@ -12,11 +12,12 @@ class Category extends React.Component {
         const {title, currency} = this.context;
         const titleLowerCase = title.toLowerCase();
         let currentCurrency = ''; //Intializing the currency filter variable
+        console.log(query)
 
         return (
             <>
                 <div className='category-page'> 
-                    <h1 className='category-title'>{title}</h1>
+                    <h1 className='category-title'>{title.toUpperCase()}</h1>
                     <div className='category-list'>
                         {/* mapping the list of items on sale  */}
                         {query && query.categories.filter( category => category.name === titleLowerCase).map( items => { //using filter to map items filter by categoreis
@@ -28,7 +29,7 @@ class Category extends React.Component {
                                         return(
                                             //passing the data of each category item to display
                                             <Card name={item.name} inStock={item.inStock}  photoGallery={item.gallery} photo={item.gallery[0]} description={item.description} 
-                                                amount={currentCurrency[0].amount} key={item.name} id={item.id} symbol={currentCurrency[0].currency.symbol}/>
+                                                amount={currentCurrency[0].amount} key={item.name} id={item.id} symbol={currentCurrency[0].currency.symbol} brand={item.brand} item={item}/>
                                         )
                                     })}
                                 </div>

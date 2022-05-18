@@ -1,5 +1,5 @@
 import React from 'react'
-import { WithParams } from './WithParams';
+import { WithParams } from '../../Queries/WithParams';
 import './ProductDP.css'
 import DataContext from '../../Context/DataContext';
 import { Interweave } from 'interweave';

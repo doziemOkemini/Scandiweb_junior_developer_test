@@ -8,6 +8,11 @@
     z-index: 1000;
 }
 
+.cart-link{
+    text-decoration: none;
+    color: #1D1F22;
+}
+
 .overlay{
     position: fixed;
     top: 65px;

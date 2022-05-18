@@ -1,5 +1,6 @@
 import React from 'react'
 import DataContext from '../../Context/DataContext'
+import Slider from '../ImageSlider/Slider';
 import ProductCard from '../PDP/ProductCard';
 import './Cart.css'
 
@@ -55,7 +56,10 @@ class Cart extends React.Component {
                        <p> {item.qty} </p>
                        <button onClick={() => this.onRemove(item, currentCurrency[0].amount)} > - </button>
                     </div>
-                    <img  src={item.gallery[0]} alt={item.id}/>
+                    <div className='cart-slider'>
+                      <Slider slides={item.gallery}/>
+                    </div>
+                    
                   </div>
 
                 </div>
