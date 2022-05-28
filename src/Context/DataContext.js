@@ -10,7 +10,9 @@ export class DataProvider extends React.Component{
         cart: [],
         cartQty: 0,
         tax: 15.00,
-        totalInCart: 0
+        totalInCart: 0,
+        currentProduct: '',
+        attribute:[]
     }
 
   
@@ -34,6 +36,29 @@ export class DataProvider extends React.Component{
       this.setState({
           currency: value
       })
+
+      if(this.state.totalInCart > 0){
+        this.setState({
+          totalInCart: this.state.tax
+        })
+        console.log(this.state.totalInCart)
+
+        this.state.cart.forEach( item => {
+          console.log(this.state.cart)
+          const itemPrice = item.prices.find(price => price.currency.label === this.state.currency)
+          console.log(itemPrice)
+
+           this.addToTotal(itemPrice) //needs work
+        })
+      }
+  }
+
+  addToTotal = (price) =>{
+    console.log(this.state.totalInCart)
+    this.setState({
+    totalInCart: this.state.totalInCart + price.amount
+    })
+    console.log(this.state.totalInCart)
   }
 
   showMondal = () =>{
@@ -50,19 +75,23 @@ export class DataProvider extends React.Component{
     })
   }
  
-  setItems = (data) => {
+  setItems = (data, selectedAttribute) => {
     //Initializing cart products and adding product to cart in state
-    const currentCurrency = data.prices.filter(price => price.currency.label === this.state.currency);
+    const currentCurrency = data.prices.find(price => price.currency.label === this.state.currency);
+    // console.log(currentCurrency)
     const exist = this.state.cart.find( item => item.id === data.id);
     if (exist){
       return
     } else {
       this.setState({
-        cart: [...this.state.cart, {...data, qty: 1}],
+        cart: [...this.state.cart, {...data, selectedAttribute, qty: 1}],
         cartQty: this.state.cartQty + 1,
-        totalInCart: this.state.totalInCart + currentCurrency[0].amount + this.state.tax
+        totalInCart: this.state.totalInCart + currentCurrency.amount + this.state.tax,
+        currentProduct: data
       })
+      console.log(this.state.cart)
     }
+    console.log(this.state.cart)
   }
 
   onAdd = (price) =>{
@@ -79,7 +108,6 @@ export class DataProvider extends React.Component{
     })
 
   }
-
  
 
   render(){

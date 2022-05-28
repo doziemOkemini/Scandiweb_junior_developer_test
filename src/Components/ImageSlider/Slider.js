@@ -34,10 +34,6 @@ export default class Slider extends Component {
     const {slides} = this.props
     const length = slides.length
 
-   
-
-    console.log(this.state.current)
-
     if(!Array.isArray(slides) || slides.length <= 0){
         return null
     }

@@ -25,6 +25,7 @@ class Cart extends React.Component {
     //Destructing props and declaring variables 
     const {cart, currency, cartQty,  totalInCart} = this.context;
     const tax = 15.00; 
+    let symbol;
 
     return (
       <div className='cart-section'>
@@ -34,6 +35,8 @@ class Cart extends React.Component {
             //mapping cart Items
             cart.map(item => {
               const currentCurrency = item.prices.filter(price => price.currency.label === currency);
+              symbol = currentCurrency[0].currency.symbol; 
+              console.log(item)
               return(
                 <div className='item-list' key={item.id}>  
 
@@ -72,7 +75,7 @@ class Cart extends React.Component {
         <div className='checkout'> 
           <p>Tax: <span>${tax}</span></p> 
           <p>Qty: <span>{cartQty}</span> </p>
-          <p>Total: <span>{totalInCart.toFixed(2)}</span> </p>
+          <p>Total:<span> {symbol}{totalInCart.toFixed(2)}</span> </p>
           <button className='checkout-button'>Order</button>
         </div>
           

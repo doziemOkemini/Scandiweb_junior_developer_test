@@ -15,6 +15,16 @@ const WithQuery = WrappedComponent => {
                                 gallery
                                 brand 
                                 inStock
+                                attributes{
+                                    id
+                                    name
+                                    type
+                                    items{
+                                        displayValue
+                                        value
+                                        id
+                                    }
+                                }
                                     prices{
                                         currency{
                                             label

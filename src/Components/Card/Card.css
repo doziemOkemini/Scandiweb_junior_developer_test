@@ -59,19 +59,17 @@
 
 #add-to-cart{
     border: 1px solid red;
-    position: absolute;
-    z-index: 999;
-    width: 450px;
-    height: 400px;
+    position: relative;
+    right: -35%;
+    bottom: -330px;
+    width: 1px;
+    height: 1px;
     margin: auto;
     opacity: 0;
 }
 
 #cart-button{
     border: 1px solid red;
-    position: relative;
-    top: 85%;
-    left: 40%;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -81,7 +79,8 @@
     z-index: 9999;
 }
 
-#add-to-cart:hover{
+/* hover will on product card will show add-to-cart button(main div affecting child div) */
+.card-item:hover > #add-to-cart{
     opacity: 1;
 }
 

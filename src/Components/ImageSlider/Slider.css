@@ -2,7 +2,7 @@
     border: 1px solid #ff0000;
     height: 250px;
     overflow: hidden;
-    padding: o;
+    margin: 0;
 }
 
 .slider img{

@@ -7,9 +7,42 @@ import ProductCard from './ProductCard';
 
 
 class ProductDP extends React.Component {
+  // // state = {
+  // //   attribute: []
+  // // }
+
+  // handleChange = (attribute, id) =>{
+  //   //making a shallow copy of the attribute list
+  //   let updateAttribute = this.state.attribute;
+  //   // console.log(updateAttribute)
+
+  //   //finding and making a shallow copy of the object i need
+  //    const updateItem = updateAttribute[0].find(item => item.id === id)
+  //   console.log(updateItem)
+
+  //   //mutating the copy
+  //   updateItem.name = attribute
+  //   // console.log(updateItem)
+
+  //   // console.log(updateAttribute)
+
+  //   //setting the new copy to our state
+  //   this.setState({
+  //     attribute: updateAttribute
+  //   })
+    
+  //   console.log(this.state.attribute)
+  // }
+
+
+  setData = (data, attribute) =>{
+    this.handleClick(data, attribute)
+    console.log(attribute)
+  }
 
   //function to passing item data to cart
   handleClick = (data) => {
+    
     this.context.setItems(data);
   }
     
@@ -18,10 +51,13 @@ class ProductDP extends React.Component {
     const { id, data } = this.props;
     let product = '';
     let price = '';
+    
+    // console.log(this.state.attribute)
 
     //checking data and filtering data for single item with Params
     if(data) {
       product = data.category.products.filter(item => item.id === id)
+      console.log(product)
       price = product[0].prices.filter(value => value.currency.label === this.context.currency)
     }
     
@@ -68,7 +104,7 @@ class ProductDP extends React.Component {
             
                         { 
                         // passing attributes to productCard Compenent
-                          product[0].attributes && <ProductCard  attributes={product[0].attributes} /> 
+                          product[0].attributes && <ProductCard  attributes={product[0].attributes}  setData={this.setData} setAttributeState={this.setAttributeState}/> 
                         }
 
                         <h3>PRICE:</h3>

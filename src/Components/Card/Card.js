@@ -6,18 +6,23 @@ import DataContext from "../../Context/DataContext";
 export default class Card extends React.Component {
 
   handleClick = (data) => {
-    this.context.setItems(data);
+    let attributeItem = [];
+    console.log(data)
+    if(data.attributes){
+      data.attributes.forEach(element => { //looping through each attribute type
+        attributeItem.push({name: element.items[0].displayValue, id: element.id}) //pushing default value into prev Empty Array
+      });
+    }
+    this.context.setItems(data, attributeItem);
   }
   
 
   render() {
-    console.log(this.props.item)
+    // console.log(this.props.item)
     return ( 
       //display Each category Item
             <div className="card-item" >
-              <Link to={`/product/${this.props.id}`} className='card-details-link'>
-
-                <div id="add-to-cart">
+              <div id="add-to-cart">
                 {this.props.inStock ? 
                       <button id="cart-button" onClick={() => this.handleClick(this.props.item)}>
                         <svg width={18} height={18} fill="none" stroke="#f9fafa" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +33,9 @@ export default class Card extends React.Component {
                       </button>
                   : '' 
                 }
-                </div>
+              </div>
+               
+              <Link to={`/product/${this.props.id}`} className='card-details-link'>
                 {
                   this.props.inStock ? //checking Is inStock value true
                     <img src={this.props.photo} alt={this.props.description}/>

@@ -19,8 +19,10 @@ export default class CartMondal extends Component {
       }
 
   render() {
-      const {cart, currency,totalInCart, showMondal, showMondalTrue} = this.context;
+      const {cart, currency, totalInCart, showMondal, showMondalTrue} = this.context;
       const {show} = this.props;
+      let symbol;
+      
       if(show === false){
           return null
       } else{
@@ -35,6 +37,8 @@ export default class CartMondal extends Component {
                             cart.length >= 1 && 
                                 cart.map(item => {
                                   const currentCurrency = item.prices.filter(price => price.currency.label === currency);
+                                  symbol = currentCurrency[0].currency.symbol;
+
                                   return(
                                     <div className='item-list' key={item.id}>  
                     
@@ -64,7 +68,7 @@ export default class CartMondal extends Component {
                         }
 
                         <div className='checkout'>
-                            <div className='checkout-price'><p>Total:</p> <span>{totalInCart.toFixed(2)}</span> </div>
+                            <div className='checkout-price'><p>Total:</p><span>{symbol}{totalInCart.toFixed(2)}</span> </div>
                             <div className='modal-button'>
                                <button id='view-bag'><Link to={'/cart'} className='cart-link'>VIEW BAG</Link> </button>
                                 <button>CHECKOUT</button>

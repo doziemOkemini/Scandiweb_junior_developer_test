@@ -12,7 +12,7 @@ class Category extends React.Component {
         const {title, currency} = this.context;
         const titleLowerCase = title.toLowerCase();
         let currentCurrency = ''; //Intializing the currency filter variable
-        console.log(query)
+        // console.log(query)
 
         return (
             <>
