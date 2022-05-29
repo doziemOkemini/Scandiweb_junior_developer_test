@@ -42,7 +42,6 @@ class ProductDP extends React.Component {
 
   //function to passing item data to cart
   handleClick = (data) => {
-    
     this.context.setItems(data);
   }
     
